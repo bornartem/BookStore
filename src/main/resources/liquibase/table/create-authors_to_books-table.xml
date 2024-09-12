@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="create-authors_to_books-table" author="Artem Borniakov">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="authors_to_books"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="authors_to_books">
+            <column name="author_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="authors_to_books" baseColumnNames="author_id"
+                                 constraintName="FK_AUTHORS_TO_BOOKS_AUTHOR_ID"
+                                 referencedTableName="authors" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="authors_to_books" baseColumnNames="book_id"
+                                 constraintName="FK_AUTHORS_TO_BOOKS_BOOK_ID"
+                                 referencedTableName="books" referencedColumnNames="id"/>
+
+        <addPrimaryKey tableName="authors_to_books" columnNames="author_id, book_id"/>
+
+    </changeSet>
+
+
+</databaseChangeLog>

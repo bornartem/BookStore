@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="create-genres-table" author="Artem Borniakov">
+
+        <preConditions onFail="MARK_RAN">
+                <tableExists tableName="genres"/>
+        </preConditions>
+
+        <insert tableName="genres">
+            <column name="title">Фэнтези</column>
+        </insert>
+
+        <insert tableName="genres">
+            <column name="title">Приключения</column>
+        </insert>
+
+        <insert tableName="genres">
+            <column name="title">Роман</column>
+        </insert>
+
+        <insert tableName="genres">
+            <column name="title">Детектив</column>
+        </insert>
+
+    </changeSet>
+
+
+</databaseChangeLog>
